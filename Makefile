@@ -2,7 +2,8 @@ ifeq ($(HOSTTYPE),)
 	HOSTTYPE := $(shell uname -m)_$(shell uname -s)
 endif
 
-NAME = libft_malloc_$(HOSTTYPE).so
+NAME = libft_malloc.so
+LIB = libft_malloc_$(HOSTTYPE).so
 
 # <=== LIBS ===>
 
@@ -21,7 +22,7 @@ LIB_PATH = ./libft/
 
 # <=== SOURCES ===>
 
-SRC =				main.c \
+SRC =				file.c \
 
 SRC_MALLOC_IMPL =	malloc.c \
 
@@ -45,11 +46,14 @@ FLAGS = -g -std=c11 -Wall -Wextra -Werror $(INCLUDES)
 
 all: $(NAME)
 
-$(NAME): $(OBJ_SRC) $(OBJ_SRC_MALLOC_IMPL)
+$(NAME): $(LIB)
+	@ln -s $^ $@
+
+$(LIB): $(OBJ_SRC) $(OBJ_SRC_MALLOC_IMPL)
 	@make -C $(LIB_PATH)
 	@$(CC) $(FLAGS) $(LIB_PATH)$(LIBFT_NAME) \
 	$(OBJ_SRC) $(OBJ_SRC_MALLOC_IMPL) \
-	--shared -o $(NAME)
+	-shared -lpthread -o $@
 	@echo "malloc ✅"
 
 $(OBJ_DIR)/%.o : $(SRC_PATH)%.c
@@ -59,12 +63,17 @@ $(OBJ_DIR)/%.o : $(SRC_PATH)%.c
 $(OBJ_DIR)/%.o : $(SRC_MALLOC_IMPL_PATH)%.c
 	@$(CC) $(FLAGS) -c -o $@ $<
 
+tests: $(NAME)
+	@$(CC) -flat_namespace -o test_0 test/test_0.c
+	@echo "tests ✅"
+
 clean:
 	@/bin/rm -rf $(OBJ_DIR)
 	@make -C $(LIB_PATH) clean
 
 fclean: clean
-	@/bin/rm -f $(NAME)
+	@/bin/rm -f *.so
+	@/bin/rm -f test_*
 	@make -C $(LIB_PATH) fclean
 
 re: fclean $(NAME)

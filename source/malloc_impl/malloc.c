@@ -6,11 +6,13 @@
 /*   By: mtupikov <mtupikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 20:01:51 by mtupikov          #+#    #+#             */
-/*   Updated: 2019/08/01 20:03:23 by mtupikov         ###   ########.fr       */
+/*   Updated: 2019/08/01 22:00:28 by mtupikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc.h"
+#include "libft.h"
+
 
 void	free(void *ptr)
 {
