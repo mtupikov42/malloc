@@ -6,7 +6,7 @@
 /*   By: mtupikov <mtupikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 20:01:51 by mtupikov          #+#    #+#             */
-/*   Updated: 2019/08/03 14:24:16 by mtupikov         ###   ########.fr       */
+/*   Updated: 2019/08/03 19:10:26 by mtupikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,16 @@ void	*malloc(size_t size)
 	enum e_heap	type;
 	t_block	*block;
 
+	if (size == 0)
+		return (NULL);
 	pthread_mutex_lock(&g_mutex);
 	size = ALIGN4(size);
 	type = get_zone_type_from_block_size(size);
 	block = allocate_block(type, size);
 	pthread_mutex_unlock(&g_mutex);
-	return (block);
+	if (block)
+		return (void *)((char *)block + AL_BLOCK_SIZE);
+	return (NULL);
 }
 
 void	*realloc(void *ptr, size_t size)

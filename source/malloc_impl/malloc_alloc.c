@@ -6,7 +6,7 @@
 /*   By: mtupikov <mtupikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 12:21:12 by mtupikov          #+#    #+#             */
-/*   Updated: 2019/08/03 17:26:19 by mtupikov         ###   ########.fr       */
+/*   Updated: 2019/08/03 19:06:59 by mtupikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_block	*split_block(t_block *block, enum e_heap type, size_t size)
 	int		m_size;
 
 	m_size = get_block_size_from_zone_type(type);
-	if ((block->size - size) >= (m_size + AL_BLOCK_SIZE))
+	if (((block->size - size) >= (m_size + AL_BLOCK_SIZE)) || (block->size - m_size >= 0))
 	{
 		split_block = (t_block *)((char *)block + AL_BLOCK_SIZE + size);
 		split_block->size = block->size - size - AL_BLOCK_SIZE;

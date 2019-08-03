@@ -5,14 +5,22 @@ int main()
 	int i;
 	char *addr;
 
-	i = 0;
-	while (i < 1000)
+	i = 1;
+	while (i < 10)
 	{
 		addr = (char*)malloc(i);
+		addr[0] = 42;
 		free(addr);
 		i++;
 	}
-
+	i = 1;
+	while (i < 10)
+	{
+		addr = (char*)malloc(i);
+		addr[0] = 42;
+		free(addr);
+		i++;
+	}
 	show_alloc_mem();
 	return (0);
 }
