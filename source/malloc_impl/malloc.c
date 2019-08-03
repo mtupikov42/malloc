@@ -6,7 +6,7 @@
 /*   By: mtupikov <mtupikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 20:01:51 by mtupikov          #+#    #+#             */
-/*   Updated: 2019/08/03 19:10:26 by mtupikov         ###   ########.fr       */
+/*   Updated: 2019/08/03 19:25:21 by mtupikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,6 @@
 #include "helpers.h"
 
 pthread_mutex_t	g_mutex = PTHREAD_MUTEX_INITIALIZER;
-
-void	free(void *ptr)
-{
-	(void)ptr;
-	pthread_mutex_lock(&g_mutex);
-
-	pthread_mutex_unlock(&g_mutex);
-}
 
 void	*malloc(size_t size)
 {

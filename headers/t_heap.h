@@ -6,7 +6,7 @@
 /*   By: mtupikov <mtupikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 11:21:34 by mtupikov          #+#    #+#             */
-/*   Updated: 2019/08/03 16:53:20 by mtupikov         ###   ########.fr       */
+/*   Updated: 2019/08/03 19:30:40 by mtupikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ enum			e_heap
 {
 	TINY = 0,
 	SMALL,
-	LARGE
+	LARGE,
+	INVALID = -1
 };
 
 typedef struct	s_heap

@@ -6,7 +6,7 @@
 /*   By: mtupikov <mtupikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 14:05:08 by mtupikov          #+#    #+#             */
-/*   Updated: 2019/08/03 14:22:20 by mtupikov         ###   ########.fr       */
+/*   Updated: 2019/08/03 20:42:14 by mtupikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,10 @@ void	move_block_to_used(enum e_heap type, t_block *block)
 {
 	remove_block(&g_heap[type].free_blocks, block);
 	push_block_on_top(&g_heap[type].used_blocks, block);
+}
+
+void	move_block_to_free(enum e_heap type, t_block *block)
+{
+	remove_block(&g_heap[type].used_blocks, block);
+	push_block_on_top(&g_heap[type].free_blocks, block);
 }

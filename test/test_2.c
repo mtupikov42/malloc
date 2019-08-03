@@ -11,16 +11,8 @@ int main()
 		addr = (char*)malloc(i);
 		addr[0] = 42;
 		free(addr);
+		show_alloc_mem();
 		i++;
 	}
-	i = 1;
-	while (i < 10)
-	{
-		addr = (char*)malloc(i);
-		addr[0] = 42;
-		free(addr);
-		i++;
-	}
-	show_alloc_mem();
 	return (0);
 }
