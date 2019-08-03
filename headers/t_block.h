@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   malloc.h                                           :+:      :+:    :+:   */
+/*   t_block.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtupikov <mtupikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/01 19:58:51 by mtupikov          #+#    #+#             */
-/*   Updated: 2019/08/03 16:24:48 by mtupikov         ###   ########.fr       */
+/*   Created: 2019/08/03 10:35:12 by mtupikov          #+#    #+#             */
+/*   Updated: 2019/08/03 17:18:21 by mtupikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MALLOC_H
-# define MALLOC_H
+#ifndef T_BLOCK_H
+# define T_BLOCK_H
 
-#include <stdlib.h>
+# include <pthread.h>
 
-void	free(void *ptr);
-void	*malloc(size_t size);
-void	*realloc(void *ptr, size_t size);
-void	show_alloc_mem();
+# define MIN_BLOCKS_ALLOC	100
+# define TINY_BLOCK			256
+# define SMALL_BLOCK		4096
+
+typedef struct			s_block
+{
+	size_t				size;
+	struct s_block		*next;
+	struct s_block		*prev;
+}						t_block;
 
 #endif
