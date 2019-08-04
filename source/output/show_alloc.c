@@ -6,7 +6,7 @@
 /*   By: mtupikov <mtupikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 16:15:49 by mtupikov          #+#    #+#             */
-/*   Updated: 2019/08/03 20:45:14 by mtupikov         ###   ########.fr       */
+/*   Updated: 2019/08/04 16:28:22 by mtupikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 
 static void	print_block(t_block	*block)
 {
-	ft_printf("%p - %p : %d bytes\n",
-			block + AL_BLOCK_SIZE,
-			block + block->size + AL_BLOCK_SIZE,
+	ft_printf("%#x - %#x : %d bytes\n",
+			(char *)block,
+			(char *)block + block->size + AL_BLOCK_SIZE,
 			block->size);
 }
 

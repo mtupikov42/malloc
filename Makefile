@@ -40,7 +40,7 @@ SRC_OUTPUT =		show_alloc.c \
 
 SRC_FREE_IMPL =		free.c \
 
-SRC_FREE_IMPL =		realloc.c \
+SRC_REALLOC_IMPL =	realloc.c \
 
 #SRC_<name> =
 

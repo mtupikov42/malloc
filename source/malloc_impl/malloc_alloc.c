@@ -6,7 +6,7 @@
 /*   By: mtupikov <mtupikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 12:21:12 by mtupikov          #+#    #+#             */
-/*   Updated: 2019/08/03 20:46:26 by mtupikov         ###   ########.fr       */
+/*   Updated: 2019/08/04 16:29:42 by mtupikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "blocks.h"
 #include "t_heap.h"
 #include "helpers.h"
-#include "libft.h"
+#include <unistd.h>
 #include "globals.h"
 
 static t_block	*split_block(t_block *block, enum e_heap type, size_t size)
@@ -24,7 +24,7 @@ static t_block	*split_block(t_block *block, enum e_heap type, size_t size)
 
 	m_size = get_block_size_from_zone_type(type);
 	if (((block->size - size) >= (m_size + AL_BLOCK_SIZE))
-		|| (block->size - m_size >= 0))
+		|| ((int)block->size - m_size >= 0))
 	{
 		split_block = (t_block *)((char *)block + AL_BLOCK_SIZE + size);
 		split_block->size = block->size - size - AL_BLOCK_SIZE;
