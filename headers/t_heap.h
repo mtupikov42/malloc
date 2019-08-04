@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_heap.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtupikov <mtupikov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 11:21:34 by mtupikov          #+#    #+#             */
-/*   Updated: 2019/08/03 19:30:40 by mtupikov         ###   ########.fr       */
+/*   Updated: 2019/08/04 11:10:26 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ typedef struct	s_heap
 
 enum e_heap		get_zone_type_from_block_size(size_t size);
 int				get_block_size_from_zone_type(enum e_heap type);
+void			defragment_heap(enum e_heap type);
 
 #endif

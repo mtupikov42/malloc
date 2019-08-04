@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtupikov <mtupikov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 19:24:46 by mtupikov          #+#    #+#             */
-/*   Updated: 2019/08/03 20:41:46 by mtupikov         ###   ########.fr       */
+/*   Updated: 2019/08/04 11:16:21 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void				free_block(enum e_heap type, t_block *block)
 	if (type != LARGE)
 	{
 		move_block_to_free(type, block);
-		// TODO defrag
+		defragment_heap(type);
 	}
 	else
 	{

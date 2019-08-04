@@ -14,6 +14,7 @@ LIBFT_NAME = libft.a
 SRC_PATH = ./source/
 SRC_MALLOC_IMPL_PATH = $(SRC_PATH)malloc_impl/
 SRC_FREE_IMPL_PATH = $(SRC_PATH)free_impl/
+SRC_REALLOC_IMPL_PATH = $(SRC_PATH)realloc_impl/
 SRC_HEAP_PATH = $(SRC_PATH)heap/
 SRC_BLOCKS_PATH = $(SRC_PATH)blocks/
 SRC_OUTPUT_PATH = $(SRC_PATH)output/
@@ -30,6 +31,7 @@ SRC_MALLOC_IMPL =	malloc.c \
 					malloc_alloc.c \
 
 SRC_HEAP =			heap_helpers.c \
+					defragmentation.c \
 
 SRC_BLOCKS =		blocks.c \
 					blocks_usage.c \
@@ -37,6 +39,8 @@ SRC_BLOCKS =		blocks.c \
 SRC_OUTPUT =		show_alloc.c \
 
 SRC_FREE_IMPL =		free.c \
+
+SRC_FREE_IMPL =		realloc.c \
 
 #SRC_<name> =
 
@@ -46,6 +50,7 @@ OBJ_DIR = obj
 
 OBJ_SRC_MALLOC_IMPL = $(addprefix $(OBJ_DIR)/, $(SRC_MALLOC_IMPL:.c=.o))
 OBJ_SRC_FREE_IMPL = $(addprefix $(OBJ_DIR)/, $(SRC_FREE_IMPL:.c=.o))
+OBJ_SRC_REALLOC_IMPL = $(addprefix $(OBJ_DIR)/, $(SRC_REALLOC_IMPL:.c=.o))
 OBJ_SRC_HEAP = $(addprefix $(OBJ_DIR)/, $(SRC_HEAP:.c=.o))
 OBJ_SRC_BLOCKS = $(addprefix $(OBJ_DIR)/, $(SRC_BLOCKS:.c=.o))
 OBJ_SRC_OUTPUT = $(addprefix $(OBJ_DIR)/, $(SRC_OUTPUT:.c=.o))
@@ -68,12 +73,12 @@ $(NAME): $(LIB)
 
 $(LIB): $(OBJ_SRC_MALLOC_IMPL) $(OBJ_SRC_HEAP) \
 		$(OBJ_SRC_BLOCKS) $(OBJ_SRC_OUTPUT) \
-		$(OBJ_SRC_FREE_IMPL)
+		$(OBJ_SRC_FREE_IMPL) $(OBJ_SRC_REALLOC_IMPL)
 	@make -C $(LIB_PATH)
 	@$(CC) $(FLAGS) $(LIB_PATH)$(LIBFT_NAME) \
 	$(OBJ_SRC_MALLOC_IMPL) $(OBJ_SRC_HEAP) \
 	$(OBJ_SRC_BLOCKS) $(OBJ_SRC_OUTPUT) \
-	$(OBJ_SRC_FREE_IMPL) \
+	$(OBJ_SRC_FREE_IMPL) $(OBJ_SRC_REALLOC_IMPL) \
 	-shared -lpthread -o $@
 	@echo "malloc ✅"
 
@@ -82,6 +87,9 @@ $(OBJ_DIR)/%.o : $(SRC_MALLOC_IMPL_PATH)%.c
 	@$(CC) $(FLAGS) -c -o $@ $<
 
 $(OBJ_DIR)/%.o : $(SRC_FREE_IMPL_PATH)%.c
+	@$(CC) $(FLAGS) -c -o $@ $<
+
+$(OBJ_DIR)/%.o : $(SRC_REALLOC_IMPL_PATH)%.c
 	@$(CC) $(FLAGS) -c -o $@ $<
 
 $(OBJ_DIR)/%.o : $(SRC_HEAP_PATH)%.c
