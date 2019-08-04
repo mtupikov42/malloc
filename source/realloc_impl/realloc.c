@@ -6,7 +6,7 @@
 /*   By: mtupikov <mtupikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 10:41:51 by anonymous         #+#    #+#             */
-/*   Updated: 2019/08/04 13:16:58 by mtupikov         ###   ########.fr       */
+/*   Updated: 2019/08/04 16:43:34 by mtupikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	*realloc_impl(enum e_heap type, t_block *block, size_t size)
 	return (new_ptr);
 }
 
-void	*realloc(void *ptr, size_t size)
+void		*realloc(void *ptr, size_t size)
 {
 	t_block		*block;
 	enum e_heap	type;

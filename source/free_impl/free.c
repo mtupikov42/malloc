@@ -6,7 +6,7 @@
 /*   By: mtupikov <mtupikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 19:24:46 by mtupikov          #+#    #+#             */
-/*   Updated: 2019/08/04 16:29:10 by mtupikov         ###   ########.fr       */
+/*   Updated: 2019/08/04 16:43:24 by mtupikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static t_block		*search_block_in_heap(void *ptr, enum e_heap type)
 	return (NULL);
 }
 
-enum e_heap	find_block_by_ptr(void *ptr, t_block **block_ptr)
+enum e_heap			find_block_by_ptr(void *ptr, t_block **block_ptr)
 {
 	if ((*block_ptr = search_block_in_heap(ptr, TINY)))
 		return (TINY);
