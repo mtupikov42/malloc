@@ -1,3 +1,5 @@
+#include "malloc.h"
+
 int main()
 {
 	int i;
@@ -8,6 +10,6 @@ int main()
 	{
 		i++;
 	}
-	show_alloc_mem_hex();
+	show_alloc_mem();
 	return (0);
 }

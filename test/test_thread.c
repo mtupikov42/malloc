@@ -1,3 +1,4 @@
+#include "malloc.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,7 +14,7 @@ void *myThreadFun(void *vargp)
         str = realloc(str, 16);
         free(str);
     }
-    return   NULL;
+    return NULL;
 }
 
 int main()

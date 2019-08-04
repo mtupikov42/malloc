@@ -79,7 +79,7 @@ $(LIB): $(OBJ_SRC_MALLOC_IMPL) $(OBJ_SRC_HEAP) \
 	$(OBJ_SRC_MALLOC_IMPL) $(OBJ_SRC_HEAP) \
 	$(OBJ_SRC_BLOCKS) $(OBJ_SRC_OUTPUT) \
 	$(OBJ_SRC_FREE_IMPL) $(OBJ_SRC_REALLOC_IMPL) \
-	-shared -lpthread -o $@
+	-shared -lpthread -fsanitize="address" -o $@
 	@echo "malloc ✅"
 
 $(OBJ_DIR)/%.o : $(SRC_MALLOC_IMPL_PATH)%.c
@@ -104,7 +104,14 @@ $(OBJ_DIR)/%.o : $(SRC_OUTPUT_PATH)%.c
 tests: $(NAME)
 	@$(CC) $(TEST_FLAGS) -o test_0 test/test_0.c
 	@$(CC) $(TEST_FLAGS) -o test_1 test/test_1.c
-	@$(CC) $(TEST_FLAGS) -L. -lft_malloc -o test_2 test/test_2.c
+	@$(CC) $(TEST_FLAGS) -o test_2 test/test_2.c
+	@$(CC) $(TEST_FLAGS) -o test_3 test/test_3.c
+	@$(CC) $(TEST_FLAGS) -o test_3_1 test/test_3_1.c
+	@$(CC) $(TEST_FLAGS) -o test_4 test/test_4.c
+	@$(CC) $(TEST_FLAGS) -L. -lft_malloc -o test_5 test/test_5.c
+	@$(CC) $(TEST_FLAGS) -L. -lft_malloc -o test_6 test/test_6.c
+	@$(CC) $(TEST_FLAGS) -o test_7 test/test_7.c
+	@$(CC) $(TEST_FLAGS) -o test_thread test/test_thread.c
 	@echo "tests ✅"
 
 allt: tests

@@ -6,7 +6,7 @@
 /*   By: mtupikov <mtupikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 12:21:12 by mtupikov          #+#    #+#             */
-/*   Updated: 2019/08/04 16:29:42 by mtupikov         ###   ########.fr       */
+/*   Updated: 2019/08/04 17:06:40 by mtupikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,13 @@ static t_block	*alloc_large_block(size_t size)
 
 	pages = ALIGN(size + AL_BLOCK_SIZE, getpagesize());
 	block = allocate_memory(NULL, pages);
-	block->size = pages - AL_BLOCK_SIZE;
-	block->prev = NULL;
-	block->next = NULL;
-	push_block_on_top(&g_heap[LARGE].used_blocks, block);
+	if (block)
+	{
+		block->size = pages - AL_BLOCK_SIZE;
+		block->prev = NULL;
+		block->next = NULL;
+		push_block_on_top(&g_heap[LARGE].used_blocks, block);
+	}
 	return (block);
 }
 
