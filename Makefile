@@ -69,7 +69,7 @@ TEST_FLAGS = -flat_namespace -I$(INC_PATH)
 all: $(NAME)
 
 $(NAME): $(LIB)
-	@ln -s $^ $@
+	-@ln -s $^ $@
 
 $(LIB): $(OBJ_SRC_MALLOC_IMPL) $(OBJ_SRC_HEAP) \
 		$(OBJ_SRC_BLOCKS) $(OBJ_SRC_OUTPUT) \

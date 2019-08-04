@@ -6,7 +6,7 @@
 /*   By: mtupikov <mtupikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 19:24:46 by mtupikov          #+#    #+#             */
-/*   Updated: 2019/08/04 16:43:24 by mtupikov         ###   ########.fr       */
+/*   Updated: 2019/08/04 17:51:40 by mtupikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void				free_block(enum e_heap type, t_block *block)
 		remove_block(&g_heap[type].used_blocks, block);
 		munmap_block(block);
 	}
+	check_heap();
 }
 
 void				free(void *ptr)

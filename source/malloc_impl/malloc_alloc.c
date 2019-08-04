@@ -6,7 +6,7 @@
 /*   By: mtupikov <mtupikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 12:21:12 by mtupikov          #+#    #+#             */
-/*   Updated: 2019/08/04 17:06:40 by mtupikov         ###   ########.fr       */
+/*   Updated: 2019/08/04 17:51:21 by mtupikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ t_block			*allocate_block(enum e_heap type, size_t size)
 	}
 	else
 		block = alloc_large_block(size);
+	check_heap();
 	return (block);
 }
