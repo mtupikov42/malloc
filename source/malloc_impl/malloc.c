@@ -6,7 +6,7 @@
 /*   By: mtupikov <mtupikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 20:01:51 by mtupikov          #+#    #+#             */
-/*   Updated: 2019/08/04 17:20:28 by mtupikov         ###   ########.fr       */
+/*   Updated: 2019/08/06 21:17:21 by mtupikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 pthread_mutex_t	g_mutex = PTHREAD_MUTEX_INITIALIZER;
 
-void	*malloc(size_t size)
+__EXPOSE_VOID	*malloc(size_t size)
 {
 	enum e_heap	type;
 	t_block		*block;

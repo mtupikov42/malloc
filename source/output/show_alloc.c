@@ -6,7 +6,7 @@
 /*   By: mtupikov <mtupikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 16:15:49 by mtupikov          #+#    #+#             */
-/*   Updated: 2019/08/04 16:44:41 by mtupikov         ###   ########.fr       */
+/*   Updated: 2019/08/06 21:16:19 by mtupikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "libft.h"
 #include "helpers.h"
 
-static void	print_block(t_block *block)
+static void		print_block(t_block *block)
 {
 	ft_printf("%#x - %#x : %d bytes\n",
 		(char *)block,
@@ -24,7 +24,7 @@ static void	print_block(t_block *block)
 		block->size);
 }
 
-static void	print_heap(t_block *block)
+static void		print_heap(t_block *block)
 {
 	while (block)
 	{
@@ -33,7 +33,7 @@ static void	print_heap(t_block *block)
 	}
 }
 
-static void	show_zone(enum e_heap type, const char *zone_name)
+static void		show_zone(enum e_heap type, const char *zone_name)
 {
 	ft_printf("Free %s zone:\n", zone_name);
 	print_heap(g_heap[type].free_blocks);
@@ -41,7 +41,7 @@ static void	show_zone(enum e_heap type, const char *zone_name)
 	print_heap(g_heap[type].used_blocks);
 }
 
-void		show_alloc_mem(void)
+__EXPOSE_VOID	show_alloc_mem(void)
 {
 	pthread_mutex_lock(&g_mutex);
 	show_zone(TINY, "TINY");

@@ -6,7 +6,7 @@
 /*   By: mtupikov <mtupikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 10:56:14 by mtupikov          #+#    #+#             */
-/*   Updated: 2019/08/03 17:23:34 by mtupikov         ###   ########.fr       */
+/*   Updated: 2019/08/06 20:57:19 by mtupikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,14 @@ static t_block	*extend_free_zone(t_block *last, enum e_heap type, size_t size)
 	size_t	pages;
 
 	if (type == TINY)
-		pages = ALIGN(TINY_BLOCK + AL_BLOCK_SIZE * MIN_BLOCKS_ALLOC,
+		pages = ALIGN((TINY_BLOCK + AL_BLOCK_SIZE) * MIN_BLOCKS_ALLOC,
 			getpagesize());
 	else if (type == SMALL)
-		pages = ALIGN(SMALL_BLOCK + AL_BLOCK_SIZE * MIN_BLOCKS_ALLOC,
+		pages = ALIGN((SMALL_BLOCK + AL_BLOCK_SIZE) * MIN_BLOCKS_ALLOC,
 			getpagesize());
 	else
-		pages = ALIGN(size + AL_BLOCK_SIZE * MIN_BLOCKS_ALLOC, getpagesize());
+		pages = ALIGN((size + AL_BLOCK_SIZE) * MIN_BLOCKS_ALLOC,
+			getpagesize());
 	block = allocate_memory(last + AL_BLOCK_SIZE, pages);
 	if (block)
 	{

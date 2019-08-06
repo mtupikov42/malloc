@@ -62,14 +62,15 @@ CC = clang
 
 INCLUDES = -I$(LIB_PATH)includes -I$(INC_PATH)
 
-FLAGS = -g -std=c11 -Wall -Wextra -Werror $(INCLUDES)
+FLAGS = -fvisibility=hidden -std=c11 -Wall -Wextra -Werror $(INCLUDES)
 
 TEST_FLAGS = -flat_namespace -I$(INC_PATH)
 
 all: $(NAME)
 
 $(NAME): $(LIB)
-	-@ln -s $^ $@
+	@strip -x $(LIB)
+	@ln -sf $^ $@
 
 $(LIB): $(OBJ_SRC_MALLOC_IMPL) $(OBJ_SRC_HEAP) \
 		$(OBJ_SRC_BLOCKS) $(OBJ_SRC_OUTPUT) \
@@ -79,7 +80,7 @@ $(LIB): $(OBJ_SRC_MALLOC_IMPL) $(OBJ_SRC_HEAP) \
 	$(OBJ_SRC_MALLOC_IMPL) $(OBJ_SRC_HEAP) \
 	$(OBJ_SRC_BLOCKS) $(OBJ_SRC_OUTPUT) \
 	$(OBJ_SRC_FREE_IMPL) $(OBJ_SRC_REALLOC_IMPL) \
-	-shared -lpthread -fsanitize="address" -o $@
+	-shared -lpthread -o $@
 	@echo "malloc ✅"
 
 $(OBJ_DIR)/%.o : $(SRC_MALLOC_IMPL_PATH)%.c

@@ -37,7 +37,7 @@ CC	= clang
 
 OBJ_DIR = obj
 
-FLG = -Werror -Wextra -Wall
+FLG = -fvisibility=hidden -Werror -Wextra -Wall
 
 OBJ = $(SRC:.c=.o)
 
